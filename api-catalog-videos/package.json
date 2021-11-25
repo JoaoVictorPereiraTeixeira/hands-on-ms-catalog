@@ -40,7 +40,7 @@
     "type": "git",
     "url": ""
   },
-  "author": "Luis Daniel Assulfi <lassulfi@gmail.com>",
+  "author": "",
   "license": "",
   "files": [
     "README.md",
@@ -59,6 +59,7 @@
     "@types/amqp-connection-manager": "^2.0.12",
     "@types/amqplib": "^0.8.1",
     "@types/lodash": "^4.14.177",
+    "ajv": "^8.8.2",
     "amqp-connection-manager": "^3.7.0",
     "amqplib": "^0.5.6",
     "dotenv": "^10.0.0",
@@ -70,7 +71,7 @@
     "tslib": "^2.0.0"
   },
   "devDependencies": {
-    "@loopback/build": "^7.0.0",
+    "@loopback/build": "^7.0.2",
     "@loopback/eslint-config": "^11.0.0",
     "@loopback/testlab": "^3.4.2",
     "@types/node": "^10.17.60",

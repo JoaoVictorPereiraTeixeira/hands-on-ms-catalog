@@ -10,6 +10,9 @@ RUN mkdir -p /home/node/app
 
 RUN npm install -g nodemon
 
+RUN npm install -g @loopback/cli
+
+
 # USER node
 
 # COPY --chown=node . .
