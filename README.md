@@ -19,7 +19,7 @@ docker-compose up -d
 dos2unix ./.docker/entrypoint.sh
 ```
 
-3) Renomar arquivo .env.example para .env
+3) Renomear arquivo .env.example para .env
 
 4) Acessar projeto api-catalog-videos e executar o seguinte comando:
 ```
