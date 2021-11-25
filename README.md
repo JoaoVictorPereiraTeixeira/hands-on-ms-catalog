@@ -27,6 +27,17 @@ npm install
 docker-compose up -d
 ```
 
+5) Resultado esperado:
+```
+Setup OK - bora codar!
+
+Server is running at a http://127.0.0.1:3000
+
+Try http://127.0.0.1:3000/ping
+```
+
+
+
 ### LINUX - Instruções setup de ambiente ###
 
 1) Acessar projeto rabbitmq e executar o seguinte comando:
@@ -39,5 +50,14 @@ docker-compose up -d
 3) Acessar projeto api-catalog-videos e executar o seguinte comando:
 ```
 docker-compose up -d
+```
+
+4) Resultado esperado:
+```
+Setup OK - bora codar!
+
+Server is running at a http://127.0.0.1:3000
+
+Try http://127.0.0.1:3000/ping
 ```
 
