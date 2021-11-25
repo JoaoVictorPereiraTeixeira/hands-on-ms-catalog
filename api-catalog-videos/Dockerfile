@@ -14,4 +14,6 @@ RUN mkdir -p /home/node/app
 
 USER node
 
+COPY --chown=node . .
+
 WORKDIR /home/node/app
