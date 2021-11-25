@@ -27,7 +27,7 @@ npm install
 docker-compose up -d
 ```
 
-### LINUX - Instruções setup de ambiente LINUX ###
+### LINUX - Instruções setup de ambiente ###
 
 1) Acessar projeto rabbitmq e executar o seguinte comando:
 ```
