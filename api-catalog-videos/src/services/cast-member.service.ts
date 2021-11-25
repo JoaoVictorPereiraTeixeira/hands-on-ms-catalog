@@ -8,4 +8,6 @@ import {BaseModelSyncService} from './base-model-sync-service';
 export class CastMemberService  {
   constructor(@repository(CastMemberRepository) private repo: CastMemberRepository) {}
   //TODO
+
+  
 }
