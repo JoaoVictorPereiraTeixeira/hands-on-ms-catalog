@@ -66,6 +66,7 @@
     "lodash": "^4.17.21",
     "loopback-connector-esv6": "https://github.com/codeedu/loopback-connector-elastic-search/tarball/master",
     "nodemon": "^2.0.15",
+    "openapi-types": "^9.3.1",
     "tslib": "^2.0.0"
   },
   "devDependencies": {

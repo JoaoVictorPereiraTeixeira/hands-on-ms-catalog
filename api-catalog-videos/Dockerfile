@@ -8,8 +8,10 @@ RUN npm config set cache /home/node/app/.npm-cache --global
 
 RUN mkdir -p /home/node/app
 
-USER node
+RUN npm install -g nodemon
 
-COPY --chown=node . .
+# USER node
+
+# COPY --chown=node . .
 
 WORKDIR /home/node/app

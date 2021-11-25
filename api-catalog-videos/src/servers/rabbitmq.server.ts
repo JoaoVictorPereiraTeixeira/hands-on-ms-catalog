@@ -23,7 +23,7 @@ export class RabbitmqServer extends Context implements Server {
 
 
   async start(): Promise<void> {
-    //TODO
+    console.log("Setup OK - bora codar!")
   }
 
   async boot() {
