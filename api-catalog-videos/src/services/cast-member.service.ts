@@ -5,9 +5,8 @@ import {CastMemberRepository} from '../repositories';
 import {BaseModelSyncService} from './base-model-sync-service';
 
 @injectable({scope: BindingScope.SINGLETON})
-export class CastMemberService  {
+export class CastMemberService {
   constructor(@repository(CastMemberRepository) private repo: CastMemberRepository) {}
   //TODO
 
-  
 }
