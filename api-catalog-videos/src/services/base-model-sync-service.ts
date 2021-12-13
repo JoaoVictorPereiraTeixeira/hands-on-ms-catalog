@@ -2,34 +2,38 @@ import {DefaultCrudRepository} from '@loopback/repository';
 import {Message} from 'amqplib';
 import {pick} from 'lodash';
 
-interface SyncOptions {
-  repo: DefaultCrudRepository<any, any>;
+interface SyncOptions{
+  repo: DefaultCrudRepository<any,any>;
   data: any;
   message: Message
 }
 
+
 export abstract class BaseModelSyncService {
+  constructor(){
+
+  }
 
   protected async sync({repo, data, message}: SyncOptions){
-    const {id} = data || {};
-    const action = this.getAction(message);
+    const {id} = data || {}
+    const action = this.getAction(message)
     const entity = this.createEntity(data, repo);
 
     switch(action){
       case 'created':
-        await repo.create(entity);
+        repo.create(entity)
         break;
       case 'updated':
-        await this.updateOrCreate({repo, id, entity})
+        await this.updateOrCreate({repo, id, entity});
         break;
-      case 'deleted':
-        await repo.deleteById(id)
+      case 'delete':
+        await repo.deleteById(id);
         break;
     }
   }
 
   protected getAction(message: Message){
-    return message.fields.routingKey.split('.')[2];
+    return message.fields.routingKey.split('.')[2]
   }
 
   protected createEntity(data: any, repo: DefaultCrudRepository<any,any>){
@@ -37,7 +41,10 @@ export abstract class BaseModelSyncService {
   }
 
   protected async updateOrCreate({repo, id, entity}: {repo: DefaultCrudRepository<any,any>, id: string, entity: any}){
-    const exists = await repo.exists(id)
-    return exists ? repo.updateById(id, entity) : repo.create(entity)
+    const exists = await repo.exists(id);
+
+    return exists ? repo.updateById(id, entity) : repo.create(entity);
   }
+
+
 }
