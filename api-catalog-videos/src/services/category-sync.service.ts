@@ -19,15 +19,20 @@ export class CategorySyncService extends BaseModelSyncService {
     routingKey: 'model.category.*'
   })
   async handler({data, message}: {data: any, message: Message}){
-
+    await this.sync({
+      repo: this.repo,
+      data,
+      message
+    })
   }
 
   @rabbitmqSubscribe({
     exchange: 'amq.topic',
     queue: 'micro-catalog/sync-videos/category/BANANA',
-    routingKey: 'model.category.banana.*'
+    routingKey: 'model.category.*'
   })
   async handler2({data, message}: {data: any, message: Message}){
-
   }
+
+
 }

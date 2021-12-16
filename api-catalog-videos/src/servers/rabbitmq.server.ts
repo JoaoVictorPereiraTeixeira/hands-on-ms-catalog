@@ -14,7 +14,6 @@ export enum ResponseEnum{
   NACK = 2
 }
 
-
 export interface RabbitmqConfig {
   uri: string
   connOptions?: AmqpConnectionManagerOptions
@@ -36,7 +35,6 @@ export class RabbitmqServer extends Context implements Server {
   }
 
   async start(): Promise<void> {
-
     this._conn = connect([this.config.uri], this.config.connOptions);
     this._channelManager  = this.conn.createChannel();
 
@@ -107,7 +105,6 @@ export class RabbitmqServer extends Context implements Server {
               queue: assertQueue.queue,
               method: item.method
             })
-
           })
         }
       )
@@ -116,10 +113,10 @@ export class RabbitmqServer extends Context implements Server {
   // {method: Function, metadata: RabbitmqSubscribeMetadata}[]
   private getSubscribers() {
     const bindings: Array<Readonly<Binding>> = this.find('services.*');
-    console.log(bindings)
+    // console.log(bindings)
     return bindings.map(
       binding => {
-        console.log(binding)
+        // console.log(binding)
         const metadata = MetadataInspector.getAllMethodMetadata<RabbitmqSubscribeMetadata>(
           RABBITMQ_SUBSCRIBE_DECORATOR, binding.valueConstructor?.prototype
         )

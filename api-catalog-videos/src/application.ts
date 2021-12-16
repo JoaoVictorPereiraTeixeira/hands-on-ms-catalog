@@ -43,7 +43,28 @@ export class MicroCatalogApplication extends BootMixin(
     this.server(RabbitmqServer);
   }
 
-  // async boot(){ //Antes dos start
-  //   console.log(Category.definition)
-  // }
+  async boot(){
+    await super.boot();
+
+    // const genreRepo = this.getSync('repositories.GenreRepository')
+    // console.log("OK executado")
+    //@ts-ignore
+    // genreRepo.updateCategories({
+    //   "id": "1-cat",
+    //   "name": "Filme - Alterado",
+    //   "is_active": true
+    // })
+
+    // const validator = this.getSync<ValidatorService>('services.ValidatorService');
+    // try{
+    //   validator.validate({
+    //     data: {
+    //       id: '12'
+    //     },
+    //     entityClass: Category
+    //   })
+    // }catch(e){
+    //   console.dir(e, {depth: 8})
+    // }
+  }
 }

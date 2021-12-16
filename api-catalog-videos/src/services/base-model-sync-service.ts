@@ -1,4 +1,4 @@
-import {DefaultCrudRepository} from '@loopback/repository';
+import {DefaultCrudRepository, EntityNotFoundError} from '@loopback/repository';
 import {Message} from 'amqplib';
 import {pick} from 'lodash';
 
@@ -8,10 +8,16 @@ interface SyncOptions{
   message: Message
 }
 
+interface SyncRelationOptions{
+  id: string;
+  relation: string;
+  relationIds: string[];
+  repoRelation: DefaultCrudRepository<any,any>;
+  repo: DefaultCrudRepository<any,any>;
+}
 
 export abstract class BaseModelSyncService {
   constructor(){
-
   }
 
   protected async sync({repo, data, message}: SyncOptions){
@@ -45,6 +51,25 @@ export abstract class BaseModelSyncService {
 
     return exists ? repo.updateById(id, entity) : repo.create(entity);
   }
+
+  async syncRelations({id, relation, relationIds, repoRelation, repo}: SyncRelationOptions){ //[1,2,5,6]
+    let collection = await repoRelation.find({
+      where: {
+        or: relationIds.map(relationId => ({id: relationId}))
+      }
+    })
+
+    if(!collection.length){
+      const error = new EntityNotFoundError(repoRelation.entityClass, relationIds)
+      error.name = "EntityNotFound"
+      throw error;
+    }
+
+    await repo.updateById(id, {[relation]: collection})
+
+
+  }
+
 
 
 }
