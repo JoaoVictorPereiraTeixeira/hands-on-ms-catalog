@@ -39,12 +39,11 @@ export class Genre extends Entity {
   })
   updated_at: string;
 
-
   @property({
     type: 'object',
     jsonSchema: {
       type: 'array',
-      item: {
+      items: {
         type: 'object',
         properties: {
           id: {
@@ -57,7 +56,8 @@ export class Genre extends Entity {
             type: 'boolean'
           }
         }
-      }
+      },
+      uniqueItems:true
     }
   })
   categories: SmallCategory;

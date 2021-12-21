@@ -52,11 +52,14 @@ export abstract class BaseModelSyncService {
     return exists ? repo.updateById(id, entity) : repo.create(entity);
   }
 
-  async syncRelations({id, relation, relationIds, repoRelation, repo}: SyncRelationOptions){ //[1,2,5,6]
+  async syncRelations({id, relation, relationIds, repoRelation, repo}: SyncRelationOptions){ //{id:123, relationIds:[1,2,55,77]}
+    const fieldsRelation = this.extractFieldsRelation(repo,relation);
+
     let collection = await repoRelation.find({
       where: {
         or: relationIds.map(relationId => ({id: relationId}))
-      }
+      },
+      fields: fieldsRelation
     })
 
     if(!collection.length){
@@ -65,11 +68,18 @@ export abstract class BaseModelSyncService {
       throw error;
     }
 
-    await repo.updateById(id, {[relation]: collection})
+    // await repo.updateById(id, {[relation]: collection})
 
-
+    await (repo as any).attachCategories(id, collection);
   }
 
-
+  protected extractFieldsRelation(repo: DefaultCrudRepository<any,any>, relation: string){
+    return Object.keys(
+      repo.modelClass.definition.properties[relation].jsonSchema.items.properties
+    ).reduce((obj:any, field: string) => {
+      obj[field] = true
+      return obj;
+    }, {})
+  }
 
 }
